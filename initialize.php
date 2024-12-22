@@ -22,7 +22,7 @@ define("FRAMEWORK_LOG_FOLDER",  FRAMEWORK_FOLDER . ".logs/");
 define("SERVER_ROOT",           rtrim($_SERVER["DOCUMENT_ROOT"], "\\/") . "/");
 define("WEB_FOLDER",            trim(dirname($_SERVER["PHP_SELF"]), "\\/") . "/");
 
-define("REQUEST_URI",           $_SERVER["REQUEST_URI"]);
+define("REQUEST_URI",           trim($_SERVER["REQUEST_URI"], "/"));
 
 define("FRAMEWORK_LOG",         new framework\ModelLogger("framework"));
 
