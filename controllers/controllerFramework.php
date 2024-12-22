@@ -5,7 +5,16 @@ class ControllerFramework
 {
     public static function getResponse()
     {
-        $response = "TODO: parse URI and call controller and action";
-        return $response;
+        $result = self::parseRequestUri();
+        $controller = new $result[0]();
+        return $controller->{$result[1]}($result[2]);
+    }
+
+    private static function parseRequestUri()
+    {
+        // If URI cannot be parsed, show the default page, with no parameters
+        $result = ["framework\\ControllerBase", "showDefaultPage", []];
+
+        return $result;
     }
 }
