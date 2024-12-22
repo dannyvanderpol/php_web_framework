@@ -10,14 +10,12 @@ class ModelLogger
         $this->logFilename = FRAMEWORK_LOG_FOLDER . "$loggerName.log";
     }
 
-
     public function writeMessage($message)
     {
         $lines = explode(PHP_EOL, $message);
         $trace = debug_backtrace();
         $this->writeLines($trace, $lines);
     }
-
 
     public function writeDataArray($dataArray)
     {
@@ -26,7 +24,6 @@ class ModelLogger
         $trace = debug_backtrace();
         $this->writeLines($trace, $lines);
     }
-
 
     private function writeLines($caller, $arrayWithLines)
     {
@@ -55,5 +52,4 @@ class ModelLogger
         }
         file_put_contents($this->logFilename, implode("\n", $lines));
     }
-
 }
