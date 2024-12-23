@@ -62,7 +62,23 @@ class ViewPage
         $output .= "</head>\n";
         $output .= $this->generateBody();
         $output .= "</html>\n";
-        return $output;
+        return $this->replaceTemplateValues($output);
     }
 
+    private function replaceTemplateValues($input)
+    {
+        // Replace template values from user defined constants
+        // define("{MY_CONSTANT}", "my value");
+        // some text with a {MY_CONSTANT} will be replaced with 'my value';
+        $templateValues = [];
+        foreach (get_defined_constants(true)["user"] as $key => $value)
+        {
+            // Only use string values
+            if (is_string($value))
+            {
+                $templateValues["{{$key}}"] = $value;
+            }
+        }
+        return strtr($input, $templateValues);
+    }
 }
