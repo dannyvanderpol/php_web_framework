@@ -12,8 +12,25 @@ class ViewPage
     public $pageFile = "";
 
 
-    protected function getContentFromPageFile($filename)
+    protected function getContentFromPageFile($pageFile)
     {
+        // Search application first, then framework
+        $searchPaths = array_merge(APPLICATION_SEARCH_PATHS, FRAMEWORK_SEARCH_PATHS);
+        $filename = "page file '($pageFile}' not found";
+        foreach ($searchPaths as $folder)
+        {
+            if (is_dir($folder))
+            {
+                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($folder)) as $file)
+                {
+                    if (strtolower($file->getBaseName()) == strtolower($pageFile))
+                    {
+                        $filename = $file->getRealPath();
+                        break;
+                    }
+                }
+            }
+        }
         ob_start();
         include $filename;
         return ob_get_clean();

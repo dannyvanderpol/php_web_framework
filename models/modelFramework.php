@@ -4,11 +4,17 @@
 function autoloader($className)
 {
     $searchPaths = [];
-    if (str_starts_with($className, __NAMESPACE__ . "\\"));
+    if (str_starts_with($className, __NAMESPACE__ . "\\"))
     {
-        $searchPaths[] = FRAMEWORK_FOLDER;
-        $className = substr($className, strlen(__NAMESPACE__) + 1);
+        $searchPaths = FRAMEWORK_SEARCH_PATHS;
     }
+    else
+    {
+        $searchPaths = APPLICATION_SEARCH_PATHS;
+    }
+    // Remove any names spaces
+    $parts = explode("\\", $className);
+    $className = end($parts);
     // Search paths recursively for a file matching with the class name
     foreach ($searchPaths as $folder)
     {
@@ -16,12 +22,23 @@ function autoloader($className)
         {
             foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($folder)) as $file)
             {
-                if (strtolower(basename($file)) == strtolower("{$className}.php"))
+                if (strtolower($file->getBaseName()) == strtolower("{$className}.php"))
                 {
-                    require_once($file);
+                    require_once($file->getRealPath());
                     break;
                 }
             }
         }
     }
+}
+
+// Show content of one or more variables
+function debug(...$variables)
+{
+    echo "<pre>\n";
+    foreach ($variables as $variable)
+    {
+        echo var_export($variable, true) . "\n";
+    }
+    echo "</pre>\n";
 }
