@@ -17,12 +17,11 @@ HOST_URI = "http://localhost"
 # Define here your exeptions using regular expressions
 EXCEPTIONS = {
     # "reg_expres" : expected_status_code
-    r"index.php": 200,
-    r"framework/index.php": 404
+    r"^index.php": 200
 }
 
 # Script must be in application/scripts, to make this work
-ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # Check files for accessibility
 for current_folder, sub_folders, filenames in os.walk(ROOT_PATH):
