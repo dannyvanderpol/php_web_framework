@@ -2,6 +2,12 @@
 
 Generic PHP web framework for creating web sites.
 
+* PHP V8+
+* MVC pattern (model, view, controller)
+* Pretty URIs: http://server/name-of-page
+* Use as a submodule in your project
+* Designed for Apache web servers
+
 
 ## Web server
 
@@ -100,7 +106,6 @@ At least one route must be called `DEFAULT`.
 This route is used in case the requested URI is not found in the list of routes.
 An error will be reported if the default route is missing.
 The route must then specify which controller to load and which function of that controller should be called.
-Later we will add an extra route for another page.
 
 To load the routes we add it as a `require_once` in the `index.php`:
 
@@ -199,3 +204,10 @@ Only two folders are defined here. May be your application has more folders for 
 JavaScript, images, etc. Those folders will be skipped.
 
 If you reload your page in the browser it now should show the home page.
+
+
+## Advanced stuff
+
+Explanation of all features is available in the docs folder.
+
+See: https://github.com/dannyvanderpol/php_web_framework_demo for demo page with more features.
