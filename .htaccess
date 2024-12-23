@@ -1,4 +1,2 @@
-RewriteEngine On
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^.*$ ./index.php
+# Prevent loading in a browser
+Deny from all

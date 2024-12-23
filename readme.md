@@ -22,7 +22,7 @@ Create a new `index.php` in the root of your project and add the following lines
 include("framework/index.php);
 ```
 
-Copy the .htaccess from the framework to the root of your project folder.
+Copy the `.htaccess_root` from the framework to the root of your project folder, and rename the file to `.htaccess`.
 
 Now you should have a project like this:
 

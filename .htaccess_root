@@ -1,0 +1,6 @@
+# Redirect all URIs to the index.php
+# except URIs that point to existing files or folders
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^.*$ ./index.php
