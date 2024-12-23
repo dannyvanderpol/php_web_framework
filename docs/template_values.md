@@ -45,7 +45,7 @@ A handly one is `LINK_ROOT` for creating links:
 ```
 
 The `{LINK_ROOT}` will be replaced with the web location of your project.
-Let's say your are working on local host and your project is in a sub folder called 'my_project',
+Let's say your are working on localhost and your project is in a sub folder called 'my_project',
 the link will be this:
 
 ```
