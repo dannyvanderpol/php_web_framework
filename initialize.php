@@ -13,6 +13,9 @@ spl_autoload_register("framework\\autoloader");
 // Initialize the session
 session_start();
 
+// Get protocol for the web root define
+$protocol = framework\getProtocol();
+
 define("LOG_TIME_FORMAT",       "Y-m-d H:i:s");
 define("MAX_LOG_LINES",         1000);
 
@@ -21,6 +24,7 @@ define("FRAMEWORK_FOLDER",      rtrim(str_replace("\\", "/", __DIR__), "\\/") . 
 define("FRAMEWORK_LOG_FOLDER",  FRAMEWORK_FOLDER . ".logs/");
 define("SERVER_ROOT",           rtrim($_SERVER["DOCUMENT_ROOT"], "\\/") . "/");
 define("WEB_FOLDER",            trim(dirname($_SERVER["PHP_SELF"]), "\\/") . "/");
+define("LINK_ROOT",             $protocol . "://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
 
 define("REQUEST_URI",           trim($_SERVER["REQUEST_URI"], "/"));
 
@@ -44,6 +48,7 @@ FRAMEWORK_LOG->writeMessage("FRAMEWORK_FOLDER        : '" . FRAMEWORK_FOLDER . "
 FRAMEWORK_LOG->writeMessage("FRAMEWORK_LOG_FOLDER    : '" . FRAMEWORK_LOG_FOLDER . "'");
 FRAMEWORK_LOG->writeMessage("SERVER_ROOT             : '" . SERVER_ROOT . "'");
 FRAMEWORK_LOG->writeMessage("WEB_FOLDER              : '" . WEB_FOLDER . "'");
+FRAMEWORK_LOG->writeMessage("LINK_ROOT               : '" . LINK_ROOT . "'");
 FRAMEWORK_LOG->writeMessage("REQUEST_URI             : '" . REQUEST_URI . "'");
 FRAMEWORK_LOG->writeMessage("FRAMEWORK_SEARCH_PATHS  :");
 FRAMEWORK_LOG->writeDataArray(FRAMEWORK_SEARCH_PATHS);

@@ -32,6 +32,18 @@ function autoloader($className)
     }
 }
 
+// Gets the protocol
+function getProtocol()
+{
+    $protocol = "http";
+    if ( (isset($_SERVER["HTTPS"]) and $_SERVER["HTTPS"] == "on") or
+         (isset($_SERVER["REDIRECT_HTTPS"]) and $_SERVER["REDIRECT_HTTPS"] == "on") )
+    {
+        $protocol = "https";
+    }
+    return $protocol;
+}
+
 // Split lines into an array using various variants of new line characters
 function splitLines($value)
 {
