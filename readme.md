@@ -3,6 +3,12 @@
 Generic PHP web framework for creating web sites.
 
 
+## Web server
+
+For this project the Apache web server is used. A PHP module must also be installed to make it work.
+If you want to use another web server, refer to the manual of that web server on how to run a PHP web site.
+
+
 ## Setup your project
 
 Start a new empty git project. Clone the framework as a submodule in your project:
@@ -43,12 +49,13 @@ This is because your application has no URIs defined and there are no controller
 
 The minimum required to show your page is one URI, one controller and one view. So let's create those.
 In this case we create a folder `application` for all application related stuff.
-In the folder application we create three files: `controller.php`, `initialize.php` and `viewHome.php`.
+In the folder application we create four files: `.htaccess`, `controller.php`, `initialize.php` and `viewHome.php`.
 Our project now looks like this
 
 ```
 my_project
  |- application/            // the application folder
+ |   |- .htaccess           // managing the access to the application folder
  |   |- controller.php      // the application controller
  |   |- initialize.php      // initialize the application
  |   |- viewHome.php        // the view for the application
@@ -61,6 +68,20 @@ my_project
 If your project grows you may have more controllers, views and even models.
 You can always put them in sub folders to organise them in any way your like.
 For now we leave it to this to make it not too complicated.
+
+### .htaccess
+
+With the `.htaccess` file you can manage the access to the application folder.
+We don't want people to execute `http://server/application/controller.php`.
+To prevent this we add the following line to the `.htaccess` file:
+
+```
+Deny from all
+```
+
+Note this only works for Apache based web servers. If you use another type of web server,
+check the manual of that web server on how to manage access.
+This applies to all `.htaccess` files used in this project.
 
 
 ### Routes
