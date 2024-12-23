@@ -32,13 +32,19 @@ function autoloader($className)
     }
 }
 
+// Split lines into an array using various variants of new line characters
+function splitLines($value)
+{
+    return preg_split("/\r\n|\n|\r/", $value);
+}
+
 // Show content of one or more variables
 function debug(...$variables)
 {
     echo "<pre>\n";
     foreach ($variables as $variable)
     {
-        echo var_export($variable, true) . "\n";
+        echo print_r($variable, true) . "\n";
     }
     echo "</pre>\n";
 }
