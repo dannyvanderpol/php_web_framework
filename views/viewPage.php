@@ -4,12 +4,13 @@
 class ViewPage
 {
     public $docType = "html";
-    public $pageTitle = "";
     public $metaElements = [
         "charset=\"UTF-8\"",
         "name=\"viewport\" content=\"width=device-width,initial-scale=1.0\""
     ];
+    public $pageTitle = "";
     public $pageFile = "";
+    public $styleSheets = [];
 
 
     protected function getContentFromPageFile($pageFile)
@@ -53,10 +54,15 @@ class ViewPage
         {
             $output .= "<meta {$element}>\n";
         }
+        foreach ($this->styleSheets as $styleSheet)
+        {
+            $output .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . LINK_ROOT . "{$styleSheet}\" />\n";
+        }
         $output .= "<title>{$this->pageTitle}</title>\n";
         $output .= "</head>\n";
         $output .= $this->generateBody();
         $output .= "</html>\n";
         return $output;
     }
+
 }
