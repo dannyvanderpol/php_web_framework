@@ -24,8 +24,19 @@ define("WEB_FOLDER",            trim(dirname($_SERVER["PHP_SELF"]), "\\/") . "/"
 
 define("REQUEST_URI",           trim($_SERVER["REQUEST_URI"], "/"));
 
-define("FRAMEWORK_LOG",         new framework\ModelLogger("framework"));
+// Framework search paths
+define("FRAMEWORK_SEARCH_PATHS", [
+    FRAMEWORK_FOLDER . "controllers",
+    FRAMEWORK_FOLDER . "models",
+    FRAMEWORK_FOLDER . "views",
+]);
+// Application search paths
+define("APPLICATION_SEARCH_PATHS", (defined("SEARCH_PATHS") ?
+    array_map(function($x) { return SERVER_ROOT . WEB_FOLDER . $x; }, SEARCH_PATHS) : []));
 
+
+// Framework logger
+define("FRAMEWORK_LOG",         new framework\ModelLogger("framework"));
 FRAMEWORK_LOG->writeMessage("----------------------------------- Framework start -----------------------------------");
 FRAMEWORK_LOG->writeMessage("LOG_TIME_FORMAT      : '" . LOG_TIME_FORMAT . "'");
 FRAMEWORK_LOG->writeMessage("MAX_LOG_LINES        : " . MAX_LOG_LINES);
