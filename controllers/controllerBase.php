@@ -8,17 +8,17 @@ class ControllerBase
         return $this->$action($parameters);
     }
 
-    private function showDefaultPage($parameters)
-    {
-        $view = $this->createView(FRAMEWORK_FOLDER . "views/viewDefaultPage.php");
-        return $view->generateOutput();
-    }
-
-    private function createView($viewName)
+    public function createView($viewName)
     {
         $view = new ViewPage();
         $view->pageTitle = "Framework default page";
         $view->pageFile = $viewName;
         return $view;
+    }
+
+    private function showDefaultPage($parameters)
+    {
+        $view = $this->createView("viewDefaultPage.php");
+        return $view->generateOutput();
     }
 }
