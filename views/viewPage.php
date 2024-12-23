@@ -16,7 +16,7 @@ class ViewPage
     {
         // Search application first, then framework
         $searchPaths = array_merge(APPLICATION_SEARCH_PATHS, FRAMEWORK_SEARCH_PATHS);
-        $filename = "page file '($pageFile}' not found";
+        $filename = "page file '{$pageFile}' not found";
         foreach ($searchPaths as $folder)
         {
             if (is_dir($folder))
