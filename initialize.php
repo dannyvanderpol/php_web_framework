@@ -38,10 +38,14 @@ define("APPLICATION_SEARCH_PATHS", (defined("SEARCH_PATHS") ?
 // Framework logger
 define("FRAMEWORK_LOG",         new framework\ModelLogger("framework"));
 FRAMEWORK_LOG->writeMessage("----------------------------------- Framework start -----------------------------------");
-FRAMEWORK_LOG->writeMessage("LOG_TIME_FORMAT      : '" . LOG_TIME_FORMAT . "'");
-FRAMEWORK_LOG->writeMessage("MAX_LOG_LINES        : " . MAX_LOG_LINES);
-FRAMEWORK_LOG->writeMessage("FRAMEWORK_FOLDER     : '" . FRAMEWORK_FOLDER . "'");
-FRAMEWORK_LOG->writeMessage("FRAMEWORK_LOG_FOLDER : '" . FRAMEWORK_LOG_FOLDER . "'");
-FRAMEWORK_LOG->writeMessage("SERVER_ROOT          : '" . SERVER_ROOT . "'");
-FRAMEWORK_LOG->writeMessage("WEB_FOLDER           : '" . WEB_FOLDER . "'");
-FRAMEWORK_LOG->writeMessage("REQUEST_URI          : '" . REQUEST_URI . "'");
+FRAMEWORK_LOG->writeMessage("LOG_TIME_FORMAT         : '" . LOG_TIME_FORMAT . "'");
+FRAMEWORK_LOG->writeMessage("MAX_LOG_LINES           : " . MAX_LOG_LINES);
+FRAMEWORK_LOG->writeMessage("FRAMEWORK_FOLDER        : '" . FRAMEWORK_FOLDER . "'");
+FRAMEWORK_LOG->writeMessage("FRAMEWORK_LOG_FOLDER    : '" . FRAMEWORK_LOG_FOLDER . "'");
+FRAMEWORK_LOG->writeMessage("SERVER_ROOT             : '" . SERVER_ROOT . "'");
+FRAMEWORK_LOG->writeMessage("WEB_FOLDER              : '" . WEB_FOLDER . "'");
+FRAMEWORK_LOG->writeMessage("REQUEST_URI             : '" . REQUEST_URI . "'");
+FRAMEWORK_LOG->writeMessage("FRAMEWORK_SEARCH_PATHS  :");
+FRAMEWORK_LOG->writeDataArray(FRAMEWORK_SEARCH_PATHS);
+FRAMEWORK_LOG->writeMessage("APPLICATION_SEARCH_PATHS:");
+FRAMEWORK_LOG->writeDataArray(APPLICATION_SEARCH_PATHS);
