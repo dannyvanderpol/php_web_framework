@@ -7,7 +7,7 @@ Generic PHP web framework for creating web sites.
 * Pretty URIs: http://server/name-of-page
 * Use as a submodule in your project
 * Designed for Apache web servers
-
+* Light weight: 8 PHP files with 339 code lines
 
 ## Web server
 
