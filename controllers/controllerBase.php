@@ -8,6 +8,12 @@ class ControllerBase
         return $this->$action($parameters);
     }
 
+    protected function gotoLocation($location)
+    {
+        header("Location: " . LINK_ROOT . $location);
+        exit();
+    }
+
     public function createView($viewName)
     {
         $view = new ViewPage();
