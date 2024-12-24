@@ -19,7 +19,7 @@ class ModelLogger
 
     public function writeDataArray($dataArray)
     {
-        $dataString = print_r($dataArray, true);
+        $dataString = var_export($dataArray, true);
         $lines = splitLines($dataString);
         $trace = debug_backtrace();
         $this->writeLines($trace, $lines);

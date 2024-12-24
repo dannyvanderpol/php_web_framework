@@ -58,7 +58,7 @@ The view `viewParameters.php` can look like this:
 <?php
 
 // We can use the keyword $this to access the properties of the page class
-print_r($this->pageData);
+var_export($this->pageData);
 
 ?>
 </pre>
@@ -69,14 +69,14 @@ For the URI `parameters/param-1/1234/param-2/5678`, the output will look like th
 ```
 This page shows the values of the parameters in the URI:
 
-Array
-(
-    [param_1] => 1234
-    [param_2] => 5678
+array (
+  'param_1' => '1234',
+  'param_2' => '5678'
 )
 ```
 
-Each parameter is a key value pair.
+isEach parameter is a key value pair. If a parameter are omitted, it is also not in the array.
+This can be checked using `isset($parameters["param_1"])`.
 
 Parameters can also be added in a traditional way.
 
@@ -85,12 +85,11 @@ For the URI `parameters/param-1/1234/param-2/5678?extra_1=abcd&extra_2=efgh`, th
 ```
 This page shows the values of the parameters in the URI:
 
-Array
-(
-    [param_1] => 1234
-    [param_2] => 5678
-    [extra_1] => abcd
-    [extra_2] => efgh
+array (
+  'param_1' => '1234',
+  'param_2' => '5678',
+  'extra_1' => 'abcd',
+  'extra_2' => 'efgh',
 )
 ```
 
