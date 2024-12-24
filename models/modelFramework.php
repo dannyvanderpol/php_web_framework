@@ -76,3 +76,9 @@ function debug(...$variables)
     }
     echo "</pre>\n";
 }
+
+// Get a value from an array with key value pairs, return default value if the key does not exist
+function arrayGet($array, $key, $defuault=null)
+{
+    return (isset($array[$key]) ? $array[$key] : $default);
+}
