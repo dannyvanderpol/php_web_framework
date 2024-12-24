@@ -8,7 +8,7 @@ They can easily be added to the view.
 Let's say you have a number of styles sheets in your application folder.
 You can add them as follows:
 
-```
+``` PHP
 <?php use framework as F;
 
 class Controller extends F\ControllerBase
