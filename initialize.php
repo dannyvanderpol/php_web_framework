@@ -8,7 +8,8 @@ require_once "models/modelFramework.php";
 date_default_timezone_set("UTC");
 
 // Required for the error handler
-define("IS_LOCALHOST", $_SERVER["SERVER_NAME"] == "localhost");
+define("SERVER_NAME",  $_SERVER["SERVER_NAME"]);
+define("IS_LOCALHOST", SERVER_NAME == "localhost");
 
 // Set our own error handler to log errors to the system logger
 set_error_handler("framework\\errorHandler");
@@ -32,8 +33,7 @@ define("SERVER_ROOT",           rtrim($_SERVER["DOCUMENT_ROOT"], "\\/") . "/");
 define("WEB_FOLDER",            trim(dirname($_SERVER["PHP_SELF"]), "\\/") . "/");
 define("LINK_ROOT",             $protocol . "://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
 define("LINK_ROOT_SSL",         "https://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
-
-define("REQUEST_URI",           trim($_SERVER["REQUEST_URI"], "/"));
+define("REQUEST_URI",           substr(trim($_SERVER["REQUEST_URI"], "/"), strlen(WEB_FOLDER)));
 
 // Framework search paths
 define("FRAMEWORK_SEARCH_PATHS", [
@@ -51,6 +51,7 @@ define("FRAMEWORK_LOG",         new framework\ModelLogger("framework"));
 FRAMEWORK_LOG->writeMessage("----------------------------------- Framework start -----------------------------------");
 FRAMEWORK_LOG->writeMessage("LOG_TIME_FORMAT         : '" . LOG_TIME_FORMAT . "'");
 FRAMEWORK_LOG->writeMessage("MAX_LOG_LINES           : " . MAX_LOG_LINES);
+FRAMEWORK_LOG->writeMessage("SERVER_NAME             : '" . SERVER_NAME . "'");
 FRAMEWORK_LOG->writeMessage("IS_LOCALHOST            : " . var_export(IS_LOCALHOST, true));
 FRAMEWORK_LOG->writeMessage("FRAMEWORK_FOLDER        : '" . FRAMEWORK_FOLDER . "'");
 FRAMEWORK_LOG->writeMessage("FRAMEWORK_LOG_FOLDER    : '" . FRAMEWORK_LOG_FOLDER . "'");

@@ -5,6 +5,7 @@ class ControllerFramework
 {
     public static function getResponse()
     {
+        self::forceSSL();
         $result = self::parseRequestUri();
         $controller = new $result[0]();
         return $controller->executeAction($result[1], $result[2], $result[3]);
@@ -30,10 +31,6 @@ class ControllerFramework
             // URI can have URI parameters E.G: /my/uri?param=value
             $uriParts = explode("?", REQUEST_URI);
             $requestUri = $uriParts[0];
-            if(WEB_FOLDER != "" and str_starts_with($requestUri, WEB_FOLDER))
-            {
-                $requestUri = substr($requestUri, strlen(WEB_FOLDER));
-            }
             FRAMEWORK_LOG->writeMessage("Parse URI: '{$requestUri}'");
             $splittedRequestUri = explode("/", trim($requestUri, "/"));
             foreach ($uris as $index => $uri)
@@ -86,5 +83,26 @@ class ControllerFramework
             $result[3] = $parameters;
         }
         return $result;
+    }
+
+    private static function forceSSL()
+    {
+        // Force SSL if a domain is setup and force SLL is set in the application initialization script
+        // Set in the application initialize script:
+        // define("DOMAIN", "<domain_name>");
+        // define("FORCE_SSL", true);
+        if (defined("DOMAIN") and SERVER_NAME == DOMAIN and defined("FORCE_SSL") and FORCE_SSL and LINK_ROOT != LINK_ROOT_SSL)
+        {
+            $currentUri = REQUEST_URI;
+            FRAMEWORK_LOG->writeMessage("Forcing SSL for URI: '{$currentUri}'");
+            $newUri = LINK_ROOT_SSL . $currentUri;
+            FRAMEWORK_LOG->writeMessage("Redirect to: '{$newUri}'");
+            header("Location: {$newUri}");
+            exit();
+        }
+        else
+        {
+            FRAMEWORK_LOG->writeMessage("No force SSL enabled");
+        }
     }
 }
