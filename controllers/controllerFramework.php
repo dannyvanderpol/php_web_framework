@@ -34,6 +34,7 @@ class ControllerFramework
             {
                 $requestUri = substr($requestUri, strlen(WEB_FOLDER));
             }
+            FRAMEWORK_LOG->writeMessage("Parse URI: '{$requestUri}'");
             $splittedRequestUri = explode("/", trim($requestUri, "/"));
             foreach ($uris as $index => $uri)
             {
@@ -68,13 +69,17 @@ class ControllerFramework
                         // Add remaining URI parameters to the parameters, if there were any
                         if (count($uriParts) > 1) {
                             parse_str($uriParts[1], $temp);
-                            $params = array_merge($parameters, $temp);
+                            $params = array_merge($params, $temp);
                         }
                         $parameters = $params;
                         break;
                     }
                 }
             }
+            FRAMEWORK_LOG->writeMessage("Using route:");
+            FRAMEWORK_LOG->writeDataArray($route);
+            FRAMEWORK_LOG->writeMessage("Parameters:");
+            FRAMEWORK_LOG->writeDataArray($parameters);
             $result[0] = $route[1];
             $result[1] = $route[2];
             $result[2] = (isset($route[3]) ? $route[3] : null);
