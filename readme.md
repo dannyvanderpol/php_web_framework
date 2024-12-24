@@ -5,6 +5,10 @@ Generic PHP web framework for creating web sites.
 * PHP V8+
 * MVC pattern (model, view, controller)
 * Pretty URIs: http://server/name-of-page
+* URIs can have parameters:
+  * http://server/show-products/category/tools/order-by/price
+* Also support reqular parameters:
+  * http://server/show-products?category=tools&order_by=price
 * Use as a submodule in your project
 * Designed for Apache web servers
 * Light weight: 8 PHP files with 339 code lines
