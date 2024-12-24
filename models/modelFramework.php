@@ -1,5 +1,21 @@
 <?php namespace framework;
 
+// Log all warnings and errors to the system logger.
+function errorHandler($errno, $errstr, $errfile, $errline)
+{
+    $log = new ModelLogger("errorHandler");
+    $log->writeMessage("Errno $errno: $errstr");
+    $log->writeMessage("$errfile line $errline");
+    // If on localhost, show warnings and errors in the browser.
+    if (IS_LOCALHOST)
+    {
+        // On local host always use the internal PHP handler
+        return false;
+    }
+    // Other hosts, disable the internal PHP handler
+    return true;
+}
+
 // Auto loader for automatically including source files
 function autoloader($className)
 {
@@ -56,7 +72,7 @@ function debug(...$variables)
     echo "<pre>\n";
     foreach ($variables as $variable)
     {
-        echo print_r($variable, true) . "\n";
+        echo var_export($variable, true) . "\n";
     }
     echo "</pre>\n";
 }
