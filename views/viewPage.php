@@ -11,6 +11,7 @@ class ViewPage
     public $pageTitle = "";
     public $pageFile = "";
     public $styleSheets = [];
+    public $pageData = null;
 
 
     protected function getContentFromPageFile($pageFile)
