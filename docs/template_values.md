@@ -10,13 +10,14 @@ Templates values are defined using the `define` statement:
 define("{MY_NAME}", "John Doe");
 ```
 
+Template value names must be encapsulated with braces.
 In the HTML of your page you can use this as follows:
 
 ``` HTML
 <p>My name is: {MY_NAME}.</p>
 ```
 
-Template value names must be encapsulated with braces. The output will be:
+The output will be:
 
 ```
 My name is John Doe.

@@ -79,7 +79,7 @@ The define includes whether you use https and the port number if applicable.
 
 This way you are ensured all links keep working when renaming the project folder or moving the project to another server.
 
-This can also be used for images and other element that require a link:
+This can also be used for images and other elements that require an URI:
 
 ``` HTML
 <img src="{LINK_ROOT}images/my-photo.png" />

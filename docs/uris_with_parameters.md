@@ -75,7 +75,7 @@ array (
 )
 ```
 
-isEach parameter is a key value pair. If a parameter are omitted, it is also not in the array.
+Each parameter is a key value pair. If a parameter is omitted, it is also not in the array.
 This can be checked using `isset($parameters["param_1"])`.
 
 Parameters can also be added in a traditional way.
@@ -107,7 +107,7 @@ define("ROUTES", [
 If we navigate to URI `show-page/product` it will match the first URI.
 If we navigate to URI `show-page/about-us` it will also match the first URI.
 
-The seconds URI will never be used.
+The second URI will never be used.
 
 To fix this you can change the order:
 
