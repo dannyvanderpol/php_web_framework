@@ -10,8 +10,8 @@ Generic PHP web framework for creating web sites.
 * Also support reqular parameters:
   * http://server/show-products?category=tools&order_by=price
 * Use as a submodule in your project
-* Designed for Apache web servers
-* Light weight: 8 PHP files with 339 code lines
+* Light weight: 12 PHP files with 3521 code lines in 217 KB
+
 
 ## Web server
 
