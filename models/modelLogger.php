@@ -19,8 +19,11 @@ class ModelLogger
 
     public function writeDataArray($dataArray)
     {
-        $dataString = var_export($dataArray, true);
-        $lines = splitLines($dataString);
+        // Use var dump because it can handle recursion
+        ob_start();
+        var_dump($dataArray);
+        $dataString = ob_get_clean();
+        $lines = splitLines(formatVarDump($dataString));
         $trace = debug_backtrace();
         $this->writeLines($trace, $lines);
     }
