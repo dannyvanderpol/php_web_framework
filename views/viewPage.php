@@ -57,7 +57,9 @@ class ViewPage
         }
         foreach ($this->styleSheets as $styleSheet)
         {
-            $output .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . LINK_ROOT . "{$styleSheet}\" />\n";
+            // Add timestamp to prevent browers caching
+            $mtime = filemtime(SERVER_ROOT . WEB_FOLDER . $styleSheet);
+            $output .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . LINK_ROOT . "{$styleSheet}?{$mtime}\" />\n";
         }
         $output .= "<title>{$this->pageTitle}</title>\n";
         $output .= "</head>\n";
