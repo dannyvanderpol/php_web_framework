@@ -9,8 +9,10 @@ Generic PHP web framework for creating web sites.
   * http://server/show-products/category/tools/order-by/price
 * Also support reqular parameters:
   * http://server/show-products?category=tools&order_by=price
+* Models for MySQL database tables
+* Model for sending email using SMTP
 * Use as a submodule in your project
-* Light weight: 12 PHP files with 3521 code lines in 217 KB
+* Light weight: 15 PHP files with 3752 code lines in 225 KB
 
 
 ## Web server
