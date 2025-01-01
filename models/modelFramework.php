@@ -52,8 +52,7 @@ function autoloader($className)
 function getProtocol()
 {
     $protocol = "http";
-    if ( (isset($_SERVER["HTTPS"]) and $_SERVER["HTTPS"] == "on") or
-         (isset($_SERVER["REDIRECT_HTTPS"]) and $_SERVER["REDIRECT_HTTPS"] == "on") )
+    if (arryGet($_SERVER, "HTTPS", "") == "on" or arrayGet($_SERVER["REDIRECT_HTTPS"]) == "on")
     {
         $protocol = "https";
     }

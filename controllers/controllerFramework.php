@@ -79,7 +79,7 @@ class ControllerFramework
             FRAMEWORK_LOG->writeDataArray($parameters);
             $result[0] = $route[1];
             $result[1] = $route[2];
-            $result[2] = (isset($route[3]) ? $route[3] : null);
+            $result[2] = arrayGet($route, 3, null);
             $result[3] = $parameters;
         }
         return $result;
