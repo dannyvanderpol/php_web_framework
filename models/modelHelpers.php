@@ -30,3 +30,22 @@ function formatVarDump($input)
     $input = str_replace("]=>\n", "]=>", $input);
     return preg_replace("/\]=>\s+/", "] => ", $input);
 }
+
+// Retriev posted data, JSON formatted or from $_POST
+function getPostedData()
+{
+    if (count($_POST) > 0)
+    {
+        // Regular posted data
+        return $_POST;
+    }
+    $body = file_get_contents("php://input");
+    $jsonData = json_decode($body, true);
+    if ($jsonData != null)
+    {
+        // Body contains valid JSON formatted data
+        return $jsonData;
+    }
+    // Just return the body (could be a format we do not know, or incorrectly formatted data)
+    return $body;
+}
