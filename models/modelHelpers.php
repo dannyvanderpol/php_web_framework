@@ -24,6 +24,7 @@ function arrayGet($array, $key, $default=null)
     return (isset($array[$key]) ? $array[$key] : $default);
 }
 
+// Format var_dump output so it looks nicer
 function formatVarDump($input)
 {
     $input = str_replace("]=>\n", "]=>", $input);
