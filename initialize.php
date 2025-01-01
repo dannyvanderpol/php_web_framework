@@ -1,6 +1,7 @@
 <?php
 
 require_once "models/modelFramework.php";
+require_once "models/modelHelpers.php";
 
 // Initialize the framework
 
