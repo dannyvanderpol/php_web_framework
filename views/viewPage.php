@@ -11,6 +11,7 @@ class ViewPage
     public $pageTitle = "";
     public $pageFile = "";
     public $styleSheets = [];
+    public $javaScriptFiles = [];
     public $pageData = null;
 
 
@@ -60,6 +61,12 @@ class ViewPage
             // Add timestamp to prevent browers caching
             $mtime = filemtime(SERVER_ROOT . WEB_FOLDER . $styleSheet);
             $output .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . LINK_ROOT . "{$styleSheet}?{$mtime}\" />\n";
+        }
+        foreach ($this->javaScriptFiles as $javaScriptFile)
+        {
+            // Add timestamp to prevent browers caching
+            $mtime = filemtime(SERVER_ROOT . WEB_FOLDER . $javaScriptFile);
+            $output .= "<script src=\"" . LINK_ROOT . "{$javaScriptFile}?{$mtime}\"></script>\n";
         }
         $output .= "<title>{$this->pageTitle}</title>\n";
         $output .= "</head>\n";
