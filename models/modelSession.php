@@ -11,7 +11,7 @@ class ModelSession
 
     public static function getData($key, $default=null)
     {
-        return arrayGey($_SESSION, $key, $default);
+        return arrayGet($_SESSION, $key, $default);
     }
 
     public static function clearData($key)
