@@ -16,7 +16,7 @@ class ModelDatabaseTable
         // Logic can be added here to support other interfaces
         $this->interface = new ModelMySql($host, $user, $password);
 
-        if ($this->interface->connected)
+        if ($this->interface->connected and $this->database != "" and $this->table != "" and count($this->fields) > 0)
         {
             if (!$this->interface->tableExist($this->database, $this->table))
             {
