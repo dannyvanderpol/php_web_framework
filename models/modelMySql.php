@@ -62,8 +62,7 @@ class ModelMySql extends \mysqli
     {
         $query = "SHOW TABLES FROM {$database} LIKE '{$table}'";
         $result = $this->executeQuery($query);
-        $exist = ($result !== false and count($result) > 0);
-        return $result;
+        return ($result !== false and count($result) > 0);
     }
 
     public function createTable($database, $table, $fields)
@@ -97,6 +96,11 @@ class ModelMySql extends \mysqli
         }
         $query = trim($query, ",") . "\n)";
         return $this->executeQuery($query);
+    }
+
+    public function dropTable($database, $table)
+    {
+        return $this->executeQuery("DROP TABLE {$database}.{$table}");
     }
 
     public function executeQuery($query, $params=null)
