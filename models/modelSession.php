@@ -16,10 +16,7 @@ class ModelSession
 
     public static function clearData($key)
     {
-        if (isset($_SESSION[$key]))
-        {
-            unset($_SESSION[$key]);
-        }
+        unset($_SESSION[$key]);
     }
 
     public static function destroySession()
