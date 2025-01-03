@@ -35,9 +35,9 @@ class ModelDatabaseTable
         return $this->interface->lastError;
     }
 
-    public function getRecords()
+    public function getRecords($options=[])
     {
-        return $this->interface->getRecords($this->database, $this->table);
+        return $this->interface->getRecords($this->database, $this->table, $options);
     }
 
     public function addRecord($record)

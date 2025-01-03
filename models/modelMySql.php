@@ -27,9 +27,14 @@ class ModelMySql extends \mysqli
         }
     }
 
-    public function getRecords($database, $table)
+    public function getRecords($database, $table, $options=[])
     {
+        $filter = arrayGet($options, "filter");
         $query = "SELECT * FROM {$database}.{$table}";
+        if ($filter != null)
+        {
+            $query .= " WHERE {$filter}";
+        }
         return $this->executeQuery($query);
     }
 
