@@ -20,13 +20,6 @@ class ModelMySql extends \mysqli
         restore_error_handler();
     }
 
-    public function __destruct()
-    {
-        if ($this->connected){
-            $this->close();
-        }
-    }
-
     public function getRecords($database, $table, $options=[])
     {
         $filter = arrayGet($options, "filter");

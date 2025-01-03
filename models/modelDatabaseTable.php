@@ -30,6 +30,11 @@ class ModelDatabaseTable
         }
     }
 
+    public function isConnected()
+    {
+        return $this->interface->connected;
+    }
+
     public function getLastError()
     {
         return $this->interface->lastError;
