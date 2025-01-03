@@ -8,6 +8,7 @@ class ModelDatabaseTable
     public $database = "";
     public $table = "";
     public $fields = [];
+    public $defaultRecords = [];
 
 
     public function __construct($host, $user, $password)
@@ -21,6 +22,10 @@ class ModelDatabaseTable
             if (!$this->interface->tableExist($this->database, $this->table))
             {
                 $this->interface->createTable($this->database, $this->table, $this->fields);
+                foreach ($this->defaultRecords as $record)
+                {
+                    $this->addRecord($record);
+                }
             }
         }
     }
