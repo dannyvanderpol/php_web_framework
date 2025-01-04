@@ -47,7 +47,7 @@ class ModelDatabaseTable
 
     public function insertRecord($record)
     {
-        return $this->interface->insetRecord($this->database, $this->table, $record);
+        return $this->interface->insertRecord($this->database, $this->table, $record);
     }
 
     public function updateRecord($record, $condition)
