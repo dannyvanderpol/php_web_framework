@@ -40,14 +40,14 @@ class ModelDatabaseTable
         return $this->interface->lastError;
     }
 
-    public function getRecords($options=[])
+    public function selectRecords($options=[])
     {
-        return $this->interface->getRecords($this->database, $this->table, $options);
+        return $this->interface->selectRecords($this->database, $this->table, $options);
     }
 
-    public function addRecord($record)
+    public function insertRecord($record)
     {
-        return $this->interface->addRecord($this->database, $this->table, $record);
+        return $this->interface->insetRecord($this->database, $this->table, $record);
     }
 
     public function updateRecord($record, $condition)

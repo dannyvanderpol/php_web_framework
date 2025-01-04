@@ -20,7 +20,7 @@ class ModelMySql extends \mysqli
         restore_error_handler();
     }
 
-    public function getRecords($database, $table, $options=[])
+    public function selectRecords($database, $table, $options=[])
     {
         $filter = arrayGet($options, "filter");
         $query = "SELECT * FROM {$database}.{$table}";
@@ -31,7 +31,7 @@ class ModelMySql extends \mysqli
         return $this->executeQuery($query);
     }
 
-    public function addRecord($database, $table, $record)
+    public function insertRecord($database, $table, $record)
     {
         $fields = array_keys($record);
         $values = array_values($record);
