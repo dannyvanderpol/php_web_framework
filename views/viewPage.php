@@ -12,6 +12,7 @@ class ViewPage
     public $pageFile = "";
     public $styleSheets = [];
     public $javaScriptFiles = [];
+    public $javaScriptVariables = [];
     public $pageData = null;
 
 
@@ -61,6 +62,16 @@ class ViewPage
             // Add timestamp to prevent browers caching
             $mtime = filemtime(SERVER_ROOT . WEB_FOLDER . $styleSheet);
             $output .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . LINK_ROOT . "{$styleSheet}?{$mtime}\" />\n";
+        }
+        if (count($this->javaScriptVariables) > 0)
+        {
+            $output .= "<script> // Variables from the framework\n";
+            $output .= "'use strict';\n";
+            foreach ($this->javaScriptVariables as $name => $value)
+            {
+                $output .= "const {$name} = {$value};\n";
+            }
+            $output .= "</script>\n";
         }
         foreach ($this->javaScriptFiles as $javaScriptFile)
         {
