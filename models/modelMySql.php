@@ -101,6 +101,11 @@ class ModelMySql extends \mysqli
         return $this->executeQuery($query);
     }
 
+    public function truncateTable($database, $table)
+    {
+        return $this->executeQuery("TRUNCATE {$database}.{$table}");
+    }
+
     public function dropTable($database, $table)
     {
         return $this->executeQuery("DROP TABLE {$database}.{$table}");

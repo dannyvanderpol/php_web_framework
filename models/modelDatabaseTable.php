@@ -59,4 +59,9 @@ class ModelDatabaseTable
     {
         return $this->interface->deleteRecord($this->database, $this->table, $condition);
     }
+
+    public function truncateTable()
+    {
+        return $this->interface->truncateTable($this->database, $this->table);
+    }
 }
