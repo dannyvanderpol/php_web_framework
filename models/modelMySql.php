@@ -22,9 +22,10 @@ class ModelMySql extends \mysqli
 
     public function selectRecords($database, $table, $options=[])
     {
+        $fields = arrayGet($options, "fields", "*");
         $filter = arrayGet($options, "filter", "");
         $order = arrayGet($options, "order", "");
-        $query = "SELECT * FROM {$database}.{$table}";
+        $query = "SELECT {$fields} FROM {$database}.{$table}";
         if ($filter != "")
         {
             $query .= " WHERE {$filter}";
