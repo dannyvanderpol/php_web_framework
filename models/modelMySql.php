@@ -77,7 +77,7 @@ class ModelMySql extends \mysqli
         {
             $query .= "\n  ";
             $query .= "{$field->name} {$field->type} " . ($field->isRequired ? "NOT NULL" : "NULL");
-            $query .= ($field->default !== null ? " DEFAULT " . $field->dbAccess->toQuery($field->default) : "");
+            $query .= (($field->default !== null or !$field->isRequired) ? " DEFAULT " . $this->toQuery($field->default) : "");
             $query .= ($field->autoIncrement ? " AUTO_INCREMENT" : "");
             $query .= ",";
             if ($field->isKey)
@@ -142,7 +142,7 @@ class ModelMySql extends \mysqli
         {
             $value = "'{$this->real_escape_string($value)}'";
         }
-        return $value;
+        return strval($value ?? "null");
     }
 
     // Error handler
