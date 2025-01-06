@@ -1,8 +1,8 @@
 <?php namespace framework;
 
-/* Model for access data from a database table */
+/* Model for access data from a database */
 
-class ModelDatabaseTable
+class ModelDatabase
 {
     public $interface;
     public $database = "";
@@ -19,9 +19,9 @@ class ModelDatabaseTable
 
         if ($this->interface->connected and $this->database != "" and $this->table != "" and count($this->fields) > 0)
         {
-            if (!$this->interface->tableExist($this->database, $this->table))
+            if (!$this->tableExist())
             {
-                $this->interface->createTable($this->database, $this->table, $this->fields);
+                $this->createTable();
                 foreach ($this->defaultRecords as $record)
                 {
                     $this->addRecord($record);
@@ -29,6 +29,8 @@ class ModelDatabaseTable
             }
         }
     }
+
+    /* Generic */
 
     public function isConnected()
     {
@@ -39,6 +41,8 @@ class ModelDatabaseTable
     {
         return $this->interface->lastError;
     }
+
+    /* Records */
 
     public function selectRecords($options=[])
     {
@@ -60,8 +64,25 @@ class ModelDatabaseTable
         return $this->interface->deleteRecord($this->database, $this->table, $condition);
     }
 
+    /* Tables */
+
+    public function tableExist()
+    {
+        return $this->interface->tableExist($this->database, $this->table);
+    }
+
+    public function createTable()
+    {
+        return $this->interface->createTable($this->database, $this->table, $this->fields);
+    }
+
     public function truncateTable()
     {
         return $this->interface->truncateTable($this->database, $this->table);
+    }
+
+    public function dropTable()
+    {
+        return $this->interface->dropTable($this->database, $this->table);
     }
 }
