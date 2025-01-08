@@ -114,6 +114,8 @@ class ModelMySql extends \mysqli
 
     public function executeQuery($query, $params=null)
     {
+        $start = microtime(true);
+        $this->log->writeMessage("Execute query: {$query}");
         $this->lastError = "";
         set_error_handler([$this, "handleError"]);
         $result = parent::execute_query($query, $params);
@@ -132,8 +134,10 @@ class ModelMySql extends \mysqli
         {
             $records = [];
             while ($row = $result->fetch_assoc()) { $records[] = $row; }
-            return $records;
+            $result = $records;
         }
+        $time = (microtime(true) - $start);
+        $this->log->writeMessage("Query executed in {$time} seconds");
         return $result;
     }
 
