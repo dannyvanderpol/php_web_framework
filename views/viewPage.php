@@ -16,7 +16,7 @@ class ViewPage
     public $pageData = null;
 
 
-    protected function getContentFromPageFile($pageFile)
+    protected function getContentFromPageFile($pageFile, $variables=[])
     {
         // Search application first, then framework
         $searchPaths = array_merge(APPLICATION_SEARCH_PATHS, FRAMEWORK_SEARCH_PATHS);
@@ -35,8 +35,12 @@ class ViewPage
                 }
             }
         }
+        if (count($variables) > 0)
+        {
+            extract($variables);
+        }
         ob_start();
-        include $filename;
+        include "{$filename}";
         return ob_get_clean();
     }
 
