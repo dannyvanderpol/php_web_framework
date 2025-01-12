@@ -36,6 +36,7 @@ define("ABS_PATH",              SERVER_ROOT . WEB_FOLDER);
 define("LINK_ROOT",             $protocol . "://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
 define("LINK_ROOT_SSL",         "https://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
 define("REQUEST_URI",           substr(trim($_SERVER["REQUEST_URI"], "/"), strlen(WEB_FOLDER)));
+define("PAGE_URI",              explode("?", REQUEST_URI)[0]);
 
 // Framework search paths
 define("FRAMEWORK_SEARCH_PATHS", [
