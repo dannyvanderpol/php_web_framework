@@ -64,6 +64,11 @@ class ModelDatabase
         return $this->interface->deleteRecord($this->database, $this->table, $condition);
     }
 
+    public function countRecords($condition="")
+    {
+        return $this->interface->countRecords($this->database, $this->table, $condition);
+    }
+
     /* Tables */
 
     public function tableExist()

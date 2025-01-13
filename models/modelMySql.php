@@ -62,6 +62,17 @@ class ModelMySql extends \mysqli
         return $this->executeQuery($query);
     }
 
+    public function countRecords($database, $table, $condition="")
+    {
+        $query = "SELECT COUNT(*) AS count FROM {$database}.{$table}";
+        if ($condition != "")
+        {
+            $query .= " WHERE {$condition}";
+        }
+        $result = $this->executeQuery($query);
+        return $result[0]["count"];
+    }
+
     public function tableExist($database, $table)
     {
         $query = "SHOW TABLES FROM {$database} LIKE '{$table}'";
