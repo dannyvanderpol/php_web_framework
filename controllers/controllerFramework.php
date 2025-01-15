@@ -87,11 +87,14 @@ class ControllerFramework
 
     private static function forceSSL()
     {
+        // TODO: handle force SLL properly
+
         // Force SSL if a domain is setup and force SLL is set in the application initialization script
         // Set in the application initialize script:
         // define("DOMAIN", "<domain_name>");
         // define("FORCE_SSL", true);
-        if (defined("DOMAIN") and SERVER_NAME == DOMAIN and defined("FORCE_SSL") and FORCE_SSL and LINK_ROOT != LINK_ROOT_SSL)
+        // TODO: defined("DOMAIN") and SERVER_NAME == DOMAIN and
+        if (defined("FORCE_SSL") and FORCE_SSL and LINK_ROOT != LINK_ROOT_SSL)
         {
             $currentUri = REQUEST_URI;
             FRAMEWORK_LOG->writeMessage("Forcing SSL for URI: '{$currentUri}'");
