@@ -28,10 +28,15 @@ define("LOG_TIME_FORMAT",       "Y-m-d H:i:s");
 define("MAX_LOG_LINES",         1000);
 
 // Paths
+$webFolder = trim(dirname($_SERVER["PHP_SELF"]), "\\/");
+if ($webFolder != "")
+{
+    $webFolder .= "/";
+}
 define("FRAMEWORK_FOLDER",      rtrim(str_replace("\\", "/", __DIR__), "\\/") . "/");
 define("FRAMEWORK_LOG_FOLDER",  FRAMEWORK_FOLDER . ".logs/");
 define("SERVER_ROOT",           rtrim($_SERVER["DOCUMENT_ROOT"], "\\/") . "/");
-define("WEB_FOLDER",            trim(dirname($_SERVER["PHP_SELF"]), "\\/") . "/");
+define("WEB_FOLDER",            $webFolder);
 define("ABS_PATH",              SERVER_ROOT . WEB_FOLDER);
 define("LINK_ROOT",             $protocol . "://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
 define("LINK_ROOT_SSL",         "https://" . $_SERVER["HTTP_HOST"] . "/" . WEB_FOLDER);
