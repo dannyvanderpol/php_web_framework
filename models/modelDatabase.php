@@ -24,7 +24,7 @@ class ModelDatabase
                 $this->createTable();
                 foreach ($this->defaultRecords as $record)
                 {
-                    $this->addRecord($record);
+                    $this->insertRecord($record);
                 }
             }
         }
