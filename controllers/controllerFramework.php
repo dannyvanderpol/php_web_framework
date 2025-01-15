@@ -87,25 +87,37 @@ class ControllerFramework
 
     private static function forceSSL()
     {
-        // TODO: handle force SLL properly
+        FRAMEWORK_LOG->writeMessage("Try force SSL");
 
-        // Force SSL if a domain is setup and force SLL is set in the application initialization script
-        // Set in the application initialize script:
-        // define("DOMAIN", "<domain_name>");
-        // define("FORCE_SSL", true);
-        // TODO: defined("DOMAIN") and SERVER_NAME == DOMAIN and
-        if (defined("FORCE_SSL") and FORCE_SSL and LINK_ROOT != LINK_ROOT_SSL)
+        if (IS_LOCALHOST)
         {
-            $currentUri = REQUEST_URI;
-            FRAMEWORK_LOG->writeMessage("Forcing SSL for URI: '{$currentUri}'");
-            $newUri = LINK_ROOT_SSL . $currentUri;
-            FRAMEWORK_LOG->writeMessage("Redirect to: '{$newUri}'");
-            header("Location: {$newUri}");
-            exit();
+            FRAMEWORK_LOG->writeMessage("Force SSL not available on localhost");
+            return;
         }
-        else
+
+        if (LINK_ROOT == LINK_ROOT_SSL)
         {
-            FRAMEWORK_LOG->writeMessage("No force SSL enabled");
+            FRAMEWORK_LOG->writeMessage("Already using SSL");
+            return;
         }
+
+        if (!defined("FORCE_SSL"))
+        {
+            FRAMEWORK_LOG->writeMessage("FORCE_SSL is not defined, SSL not forced");
+            return;
+        }
+
+        if (FORCE_SSL !== true)
+        {
+            FRAMEWORK_LOG->writeMessage("FORCE_SSL is not set to true, SSL not forced");
+            return;
+        }
+
+        $currentUri = REQUEST_URI;
+        FRAMEWORK_LOG->writeMessage("Forcing SSL for URI: '{$currentUri}'");
+        $newUri = LINK_ROOT_SSL . $currentUri;
+        FRAMEWORK_LOG->writeMessage("Redirect to: '{$newUri}'");
+        header("Location: {$newUri}");
+        exit();
     }
 }
