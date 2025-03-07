@@ -90,4 +90,14 @@ class ModelDatabase
     {
         return $this->interface->dropTable($this->database, $this->table);
     }
+
+    public function getTables()
+    {
+        return $this->interface->getTables($this->database);
+    }
+
+    public function getFieldsFromDatabaseTable()
+    {
+        return $this->interface->getFieldsFromDatabaseTable($this->database, $this->table);
+    }
 }

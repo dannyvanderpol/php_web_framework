@@ -73,6 +73,13 @@ class ModelMySql extends \mysqli
         return $result[0]["count"];
     }
 
+    public function getTables($database)
+    {
+        $query = "SHOW TABLES FROM {$database}";
+        $result = $this->executeQuery($query);
+        return array_map(fn($x): string => $x["Tables_in_{$database}"], $result);
+    }
+
     public function tableExist($database, $table)
     {
         $query = "SHOW TABLES FROM {$database} LIKE '{$table}'";
@@ -121,6 +128,12 @@ class ModelMySql extends \mysqli
     public function dropTable($database, $table)
     {
         return $this->executeQuery("DROP TABLE {$database}.{$table}");
+    }
+
+    public function getFieldsFromDatabaseTable($database, $table)
+    {
+        $query = "SHOW COLUMNS FROM {$database}.{$table}";
+        return $this->executeQuery($query);
     }
 
     public function executeQuery($query, $params=null)
