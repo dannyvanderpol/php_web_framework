@@ -90,7 +90,6 @@ class ModelMySql extends \mysqli
     public function createTable($database, $table, $fields)
     {
         $keys = [];
-        $unique = [];
         $query = "CREATE TABLE {$database}.{$table} (";
         foreach ($fields as $field)
         {
@@ -103,18 +102,10 @@ class ModelMySql extends \mysqli
             {
                 $keys[] = $field->name;
             }
-            if ($field->isUnique)
-            {
-                $unique[] = $field->name;
-            }
         }
         if (count($keys) > 0)
         {
             $query .= "\n  PRIMARY KEY (" . implode(",", $keys) . "),";
-        }
-        if (count($unique) > 0)
-        {
-            $query .= "\n  UNIQUE (" . implode(",", $unique) . "),";
         }
         $query = trim($query, ",") . "\n)";
         return $this->executeQuery($query);

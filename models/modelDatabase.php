@@ -109,7 +109,6 @@ class ModelDatabase
             $field->default($dbField["Default"]);
             $field->autoIncrement(str_contains($dbField["Extra"], "auto_increment"));
             $field->isKey(str_contains($dbField["Key"], "PRI"));
-            $field->isUnique(false);
             $fields[] = $field;
         }
         return $fields;

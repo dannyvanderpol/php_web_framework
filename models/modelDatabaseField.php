@@ -10,7 +10,6 @@ class ModelDatabaseField
     public $default = null;
     public $autoIncrement = false;
     public $isKey = false;
-    public $isUnique = false;
 
 
     public function name($name)
@@ -46,12 +45,6 @@ class ModelDatabaseField
     public function isKey($isKey)
     {
         $this->isKey = $isKey;
-        return $this;
-    }
-
-    public function isUnique($isUnique)
-    {
-        $this->isUnique = $isUnique;
         return $this;
     }
 }
