@@ -98,6 +98,20 @@ class ModelDatabase
 
     public function getFieldsFromDatabaseTable()
     {
-        return $this->interface->getFieldsFromDatabaseTable($this->database, $this->table);
+        $fields = [];
+        $dbFields = $this->interface->getFieldsFromDatabaseTable($this->database, $this->table);
+        foreach ($dbFields as $dbField)
+        {
+            $field = new ModelDatabaseField();
+            $field->name($dbField["Field"]);
+            $field->type(strtoupper($dbField["Type"]));
+            $field->isRequired($dbField["Null"] == "NO");
+            $field->default($dbField["Default"]);
+            $field->autoIncrement(str_contains($dbField["Extra"], "auto_increment"));
+            $field->isKey(str_contains($dbField["Key"], "PRI"));
+            $field->isUnique(false);
+            $fields[] = $field;
+        }
+        return $fields;
     }
 }
