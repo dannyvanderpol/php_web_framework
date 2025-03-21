@@ -22,9 +22,16 @@ class ModelDatabase
             if (!$this->tableExist())
             {
                 $this->createTable();
-                foreach ($this->defaultRecords as $record)
+                if (method_exists($this, "addDefaultRecords"))
                 {
-                    $this->insertRecord($record);
+                    $this->addDefaultRecords();
+                }
+                else
+                {
+                    foreach ($this->defaultRecords as $record)
+                    {
+                        $this->insertRecord($record);
+                    }
                 }
             }
         }
