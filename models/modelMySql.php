@@ -131,6 +131,7 @@ class ModelMySql extends \mysqli
     {
         $start = microtime(true);
         $this->log->writeMessage("Execute query: {$query}");
+        $this->log->writeDataArray($params);
         $this->lastError = "";
         set_error_handler([$this, "handleError"]);
         $result = parent::execute_query($query, $params);
