@@ -7,7 +7,7 @@ class ModelLogger
 
     public function __construct($loggerName)
     {
-        $this->logFilename = FRAMEWORK_LOG_FOLDER . "$loggerName.log";
+        $this->logFilename = LOG_FOLDER . "$loggerName.log";
     }
 
     public function writeMessage($message)
