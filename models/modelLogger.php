@@ -19,7 +19,7 @@ class ModelLogger
 
     public function writeDataArray($dataArray)
     {
-        // Use var dump because it can handle recursion
+        // Use var_dump because it can handle recursion
         ob_start();
         var_dump($dataArray);
         $dataString = ob_get_clean();
