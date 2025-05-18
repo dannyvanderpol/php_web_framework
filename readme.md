@@ -37,7 +37,7 @@ Create a new `index.php` in the root of your project and add the following lines
 ```
 <?php
 
-include("framework/index.php);
+include("framework/index.php");
 ```
 
 Copy the `.htaccess_root` from the framework to the root of your project folder, and rename the file to `.htaccess`.
@@ -88,7 +88,7 @@ We don't want people to execute `http://server/application/controller.php`.
 To prevent this we add the following line to the `.htaccess` file:
 
 ```
-Deny from all
+Require all denied
 ```
 
 Note this only works for Apache based web servers. If you use another type of web server,
@@ -167,11 +167,11 @@ class Controller extends F\ControllerBase
 ```
 
 The controller extends the base controller from the framework.
-A function `showHome` is defined. This is the name of the function as defined in the route.
+A function `showHome` is created. This is the name of the function as defined in the route.
 The function creates a view based on the `viewHome.php` file. This is a function from the base controller.
 It returns an instance of the framework `viewPage` class.
 We set the page title, this is the value of the `<title>` element in the HTML page.
-The we return the generated output which is the actual HTML.
+Then we return the generated output which is the actual HTML.
 
 If you reload the page you will still see the same error message.
 
@@ -193,6 +193,8 @@ define("ROUTES", [
 define("SEARCH_PATHS", ["application"]);
 ```
 
+If you reload your page in the browser it now should show the home page.
+
 The paths are relative to the project folder. We now added the complete application folder.
 This means it will search all files and folders recursivly.
 If your project grows you may wat to organise and limit the amount of folders to search.
@@ -208,8 +210,6 @@ define("SEARCH_PATHS", [
 
 Only two folders are defined here. May be your application has more folders for style sheets,
 JavaScript, images, etc. Those folders will be skipped.
-
-If you reload your page in the browser it now should show the home page.
 
 
 ## Advanced stuff
