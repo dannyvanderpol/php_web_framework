@@ -37,7 +37,7 @@ Create a new `index.php` in the root of your project and add the following lines
 ```
 <?php
 
-include("framework/index.php");
+include "framework/index.php";
 ```
 
 Copy the `.htaccess_root` from the framework to the root of your project folder, and rename the file to `.htaccess`.
@@ -118,9 +118,9 @@ To load the routes we add it as a `require_once` in the `index.php`:
 ```
 <?php
 
-require_once("application/initialize.php");
+require_once "application/initialize.php";
 
-include("framework/index.php");
+include "framework/index.php";
 ```
 
 When the page loads, the routes are loaded and the framework can use them.
