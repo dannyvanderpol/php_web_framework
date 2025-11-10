@@ -6,7 +6,8 @@ require_once "models/modelHelpers.php";
 // Initialize the framework
 
 // Set the time zone
-date_default_timezone_set("UTC");
+$time_zone = defined("APP_TIME_ZONE") ? APP_TIME_ZONE : "UTC";
+date_default_timezone_set($time_zone);
 
 // Required for the error handler
 define("SERVER_NAME",  $_SERVER["SERVER_NAME"]);
@@ -82,3 +83,4 @@ FRAMEWORK_LOG->writeMessage("FRAMEWORK_SEARCH_PATHS  :");
 FRAMEWORK_LOG->writeDataArray(FRAMEWORK_SEARCH_PATHS);
 FRAMEWORK_LOG->writeMessage("APPLICATION_SEARCH_PATHS:");
 FRAMEWORK_LOG->writeDataArray(APPLICATION_SEARCH_PATHS);
+
