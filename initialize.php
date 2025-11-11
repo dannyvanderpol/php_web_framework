@@ -25,8 +25,9 @@ session_start();
 // Get protocol for the web root define
 $protocol = framework\getProtocol();
 
-define("LOG_TIME_FORMAT",       "Y-m-d H:i:s");
+define("LOG_TIME_FORMAT",       "Y-m-d H:i:s.v");
 define("MAX_LOG_LINES",         1000);
+define("LOG_FLUSH_THRESHOLD",   50);
 
 // Paths
 $webFolder = trim(dirname($_SERVER["PHP_SELF"]), "\\/");
@@ -83,4 +84,5 @@ FRAMEWORK_LOG->writeMessage("FRAMEWORK_SEARCH_PATHS  :");
 FRAMEWORK_LOG->writeDataArray(FRAMEWORK_SEARCH_PATHS);
 FRAMEWORK_LOG->writeMessage("APPLICATION_SEARCH_PATHS:");
 FRAMEWORK_LOG->writeDataArray(APPLICATION_SEARCH_PATHS);
+
 
