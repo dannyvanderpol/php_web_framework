@@ -3,11 +3,16 @@
 class ModelLogger
 {
     private $logFilename;
-
+    private $buffer = [];
 
     public function __construct($loggerName)
     {
         $this->logFilename = LOG_FOLDER . "$loggerName.log";
+    }
+
+    public function __destruct()
+    {
+       $this->flush();
     }
 
     public function writeMessage($message)
@@ -37,22 +42,32 @@ class ModelLogger
         }
         $date = new \DateTime();
         $timeStamp = $date->format(LOG_TIME_FORMAT);
-        $lines = array();
-        if (file_exists($this->logFilename))
-        {
-            $lines = array_filter(splitLines(file_get_contents($this->logFilename)));
-        }
         foreach($arrayWithLines as $line)
         {
             if ($line != "")
             {
-                $lines[] = "$timeStamp - $callerName - $line";
+                $this->buffer[] = "$timeStamp - $callerName - $line";
             }
         }
-        if (count($lines) > MAX_LOG_LINES)
+        if (count($this->buffer) >= LOG_FLUSH_THRESHOLD)
         {
-            $lines = array_slice($lines, -MAX_LOG_LINES);
+            $this->flush();
         }
-        file_put_contents($this->logFilename, implode("\n", $lines));
+    }
+
+    private function flush()
+    {
+        if (count($this->buffer) > 0)
+        {
+            $lines = [];
+            if (file_exists($this->logFilename))
+            {
+                $lines = array_filter(splitLines(file_get_contents($this->logFilename)));
+            }
+            $lines = array_merge($lines, $this->buffer);
+            $lines = array_slice($lines, -MAX_LOG_LINES);
+            file_put_contents($this->logFilename, implode("\n", $lines) . "\n");
+            $this->buffer = [];
+        }
     }
 }
